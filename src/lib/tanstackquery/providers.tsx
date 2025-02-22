@@ -5,6 +5,7 @@ import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experime
 import { getQueryClient } from './client';
 export default function QueryProvider({ children }: { children: React.ReactNode }) {
 	const queryClient = getQueryClient() as QueryClient;
+	console.log('QueryProvider', queryClient);
 
 	return (
 		<QueryClientProvider client={queryClient}>

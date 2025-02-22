@@ -1,13 +1,10 @@
 'use client';
 import AddLink from '@/components/@main/AddLink';
 import Container from '@/components/@main/Container';
-import useGetListItems from '@/hooks/api/useGetListItems';
-import { getUser } from '@/lib/supabase/api/auth';
-import { fetchAllListItems } from '@/lib/supabase/api/list-item';
+
 import supabase from '@/lib/supabase/client';
 import { User } from '@supabase/supabase-js';
-// import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+
 import { Suspense, useEffect, useState } from 'react';
 
 export default function MainPage() {
