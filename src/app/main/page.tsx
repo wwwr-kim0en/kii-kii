@@ -1,27 +1,29 @@
 'use client';
 import AddLink from '@/components/@main/AddLink';
 import Container from '@/components/@main/Container';
-
-import supabase from '@/lib/supabase/client';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { User } from '@supabase/supabase-js';
-
+// import { redirect } from 'next/navigation';
+// import { cookies } from 'next/headers';
+import supabase from '@/lib/supabase/client';
 import { Suspense, useEffect, useState } from 'react';
 
-export default function MainPage() {
+export default  function MainPage() {
 	const [user, setUser] = useState<User | null>(null);
 	useEffect(() => {
-		// getUser().then((user) => {
-		// 	console.log('user from mainPage', user);
-		// 	if (!user) {
-		// 		// redirect('/auth');
-		// 	}
-		// 	setUser(user);
-		// });
-		(async () => {
-			const { data } = await supabase.auth.getSession();
-			console.log(data);
-			// console.log('getUser', session);
-		})();
+		// window.localStorage.getItem('')
+		supabase.auth.getUser().then((res) => {
+			console.log('res', res);
+			const {
+				data: { user },
+				error,
+			} = res;
+			if (error) {
+				throw new Error('Container Error');
+			}
+			if (!user) return;
+			setUser(user);
+		});
 	}, []);
 
 	return (

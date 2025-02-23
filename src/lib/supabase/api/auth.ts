@@ -8,7 +8,7 @@ export async function getUser(): Promise<User | null> {
 			data: { user },
 		} = await supabase.auth.getUser();
 		console.log('getUser', user);
-		cookies().then((res) => res.set('user', JSON.stringify(user)));
+		await cookies().then((res) => res.set('user', JSON.stringify(user)));
 		return user;
 	} catch (error) {
 		throw new Error('getUser fail');
