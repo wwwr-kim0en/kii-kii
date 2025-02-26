@@ -1,8 +1,9 @@
-import supabase from '../client';
+import getServerClient from './client/server';
 
 export async function fetchAllListItems() {
-	const user = await supabase.auth.getUser();
+	const supabase = await getServerClient();
+	const user = await supabase?.auth.getUser();
 	if (!user) return;
 	const { id, email, phone, user_metadata } = user;
-	const { data, error } = await supabase.from('list-item').select('*').eq('author_id', user?.id);
+	const { data, error } = await supabase?.from('list-item').select('*').eq('author_id', user?.id);
 }
