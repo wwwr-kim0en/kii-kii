@@ -1,7 +1,6 @@
 'use client';
 import { signOut } from '@/lib/supabase/api/auth';
-import supabase from '@/lib/supabase/client';
-import { useEffect } from 'react';
+
 export default function MainHeader() {
 	async function handleSignOut() {
 		console.log('sign out');
