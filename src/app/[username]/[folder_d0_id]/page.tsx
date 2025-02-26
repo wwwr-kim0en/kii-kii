@@ -1,6 +1,6 @@
 'use client';
 
-import YoutubePlayer from '@/components/@main/YoutubePlayer';
+import YoutubePlayer from '@/components/@main/YouTubePlayer';
 import supabase from '@/lib/supabase/api/client/client';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
