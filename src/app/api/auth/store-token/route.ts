@@ -14,7 +14,12 @@ export async function POST(request: NextRequest) {
 
 		// ✅ `HttpOnly` 쿠키로 Access Token 저장
 		response.headers.set('Set-Cookie', `access_token=${accessToken}; Path=/; HttpOnly; Secure; SameSite=Lax`);
-
+		// (await cookies())
+		// 	.set(
+		// 		'access_token',
+		// 		accessToken
+		// 	)(await cookies())
+		// 	.set('refresh_token', refreshToken);
 		if (refreshToken) {
 			response.headers.append(
 				'Set-Cookie',
