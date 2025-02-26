@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 export default function Container({ user }: { user: User | null }) {
 	const [folderLists, setFolderLists] = useState<any[]>([]);
 	const userMetaData = user?.user_metadata as UserMetadata;
-	const { username } = extractFromEmail(user?.email || '');
+	const { username = 1 } = extractFromEmail(user?.email);
 
 	useEffect(() => {
 		if (!user) return;

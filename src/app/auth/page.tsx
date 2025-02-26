@@ -1,4 +1,4 @@
-import { GOOGLE, KAKAO } from './constants';
+import { OAUTH_TYPES } from '@/types';
 import OAuthButton from '../../components/OAuthButton';
 
 import getServerClient from '@/lib/supabase/api/client/server';
@@ -26,10 +26,10 @@ export default async function LoginPage() {
 	return (
 		<ul className="h-screen mx-auto flex flex-col items-center justify-center space-y-3">
 			<li>
-				<OAuthButton provider={GOOGLE} />
+				<OAuthButton provider={OAUTH_TYPES.GOOGLE} />
 			</li>
 			<li>
-				<OAuthButton provider={KAKAO} />
+				<OAuthButton provider={OAUTH_TYPES.KAKAO} />
 			</li>
 		</ul>
 	);
