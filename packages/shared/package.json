@@ -5,6 +5,8 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
+    "lint": "eslint \"src/**/*.ts\"",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
     "build": "tsc",
     "dev": "tsc --watch"
   },

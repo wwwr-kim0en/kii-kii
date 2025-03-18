@@ -10,6 +10,9 @@
       "outputs": ["dist/**", ".next/**"]
     },
     "lint": {},
-    "test": {}
+    "test": {},
+    "format": {
+      "cache": false
+    }
   }
 }

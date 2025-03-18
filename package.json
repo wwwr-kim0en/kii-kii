@@ -8,12 +8,18 @@
 		"packages/*"
 	],
 	"scripts": {
+    "prepare":"husky install",
 		"dev": "turbo run dev",
 		"build": "turbo run build",
 		"lint": "turbo run lint",
+		"format": "turbo run format",
+		"format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
 		"test": "turbo run test"
 	},
 	"devDependencies": {
+		"eslint": "^9.22.0",
+		"husky": "^9.1.7",
+		"prettier": "^3.5.3",
 		"turbo": "^2.4.4"
 	},
 	"engines": {
