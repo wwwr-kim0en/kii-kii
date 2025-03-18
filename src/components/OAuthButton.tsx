@@ -1,7 +1,7 @@
 'use client';
 import supabase from '@/lib/supabase/api/client/client';
 import { Button } from '@/components/ui/button';
-import { GOOGLE, KAKAO } from '@/app/auth/constants';
+import { OAUTH_TYPES } from '@/types';
 import { Provider } from '@supabase/supabase-js';
 
 export default function OAuthButton({ provider }: { provider: Provider }) {
@@ -14,14 +14,18 @@ export default function OAuthButton({ provider }: { provider: Provider }) {
 		});
 	}
 
-	if (provider === GOOGLE) {
-		return <Button onClick={handleOAuthButtonClick}>{GOOGLE}</Button>;
-	}
-	if (provider === KAKAO) {
+	if (provider === OAUTH_TYPES.GOOGLE) {
 		return (
-			<Button onClick={handleOAuthButtonClick}>
+			<button onClick={handleOAuthButtonClick}>
+				<img height={45} alt="google" src="/images/google_login_light.svg" />
+			</button>
+		);
+	}
+	if (provider === OAUTH_TYPES.KAKAO) {
+		return (
+			<button onClick={handleOAuthButtonClick}>
 				<img src="/images/kakao_login_medium_narrow.png" alt="kakao" />
-			</Button>
+			</button>
 		);
 	}
 }

@@ -7,11 +7,12 @@ import { extractFromEmail } from '@/utils/extractFromEmail';
 import { User, UserMetadata } from '@supabase/supabase-js';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import FolderListItem from '../FolderListItem';
 
-export default function Container({ user }: { user: User | null }) {
+export default function ServiceContentContainer({ user }: { user: User | null }) {
 	const [folderLists, setFolderLists] = useState<any[]>([]);
 	const userMetaData = user?.user_metadata as UserMetadata;
-	const { username = 1 } = extractFromEmail(user?.email);
+	const { username = '' } = extractFromEmail(user.email);
 
 	useEffect(() => {
 		if (!user) return;
@@ -24,10 +25,11 @@ export default function Container({ user }: { user: User | null }) {
 				const { data, count, error, status, statusText } = res;
 				console.log('list', data);
 				if (!data) return;
+
 				const foldersSortedByIndex = data.sort((a, b) => a.index - b.index);
 				setFolderLists(foldersSortedByIndex);
 			});
-	}, [user]);
+	}, []);
 
 	function sortFoldersByLatest() {
 		if (!folderLists.length) return;
@@ -37,20 +39,25 @@ export default function Container({ user }: { user: User | null }) {
 
 	return (
 		<div>
-			<div>
+			<h1>All</h1>
+			{/* <div>
 				<Button onClick={sortFoldersByLatest}>최신순 정렬</Button>
-			</div>
+			</div> */}
 			<p>count: {folderLists.length || 0}개</p>
-			<ul>
-				{folderLists.map((folder, index) => {
-					console.log('folder,', folder);
-					return (
-						<Link key={folder.id} href={`/${username}/${folder.id}`}>
-							<li className="">{folder.name}</li>
-						</Link>
-					);
-				})}
-			</ul>
+			<ol>
+				{folderLists.length === 0 && <></>}
+				{folderLists.length !== 0 &&
+					folderLists.map((folder, index) => {
+						console.log('folder,', folder);
+						return (
+							<Link key={folder.id} href={`/${username}/${folder.id}`}>
+								<FolderListItem description="">
+									{index + 1}. {folder.name}
+								</FolderListItem>
+							</Link>
+						);
+					})}
+			</ol>
 		</div>
 	);
 }

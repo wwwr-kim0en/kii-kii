@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
 	try {
@@ -14,13 +15,11 @@ export async function POST(request: NextRequest) {
 
 		// ✅ `HttpOnly` 쿠키로 Access Token 저장
 		response.headers.set('Set-Cookie', `access_token=${accessToken}; Path=/; HttpOnly; Secure; SameSite=Lax`);
-		// (await cookies())
-		// 	.set(
-		// 		'access_token',
-		// 		accessToken
-		// 	)(await cookies())
-		// 	.set('refresh_token', refreshToken);
+		const cookieStore = await cookies();
+		cookieStore.set('access_token', accessToken);
+
 		if (refreshToken) {
+			cookieStore.set('refresh_token', refreshToken);
 			response.headers.append(
 				'Set-Cookie',
 				`refresh_token=${refreshToken}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=2592000`

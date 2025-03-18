@@ -4,7 +4,7 @@ import { ChangeEvent, EventHandler, FormEvent, HTMLAttributes, InputHTMLAttribut
 import { addNewLink, LinkData, PostLinkData } from './api';
 import { User } from '@supabase/supabase-js';
 
-export default function AddLink({ userId }: { userId: string }) {
+export default function AddLink({ userId }: { userId: string } = { userId: '' }) {
 	const [inputValue, setInputValue] = useState('');
 
 	function handleAddLinkInput(e: ChangeEvent<HTMLInputElement>) {

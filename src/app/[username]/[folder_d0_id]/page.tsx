@@ -25,9 +25,8 @@ export default function FolderPage() {
 
 	return (
 		<section>
-			<section style={{ height: '30vh', backgroundColor: 'red' }}></section>
 			<h1>{folder?.name || ''}</h1>
-			<ul>
+			<ol>
 				{songsArr.map((song, index) => {
 					return (
 						<li key={song.id}>
@@ -38,7 +37,7 @@ export default function FolderPage() {
 						</li>
 					);
 				})}
-			</ul>
+			</ol>
 		</section>
 	);
 }

@@ -3,12 +3,13 @@ import { User } from '@supabase/supabase-js';
 import supabase from './client/server';
 import { cookies } from 'next/headers';
 
-export async function getUser(): Promise<User | null> {
+export async function getUser(): Promise<User | undefined> {
+	console.log('supabnse:', supabase);
 	try {
 		const {
 			data: { user },
 		} = await supabase?.auth.getUser();
-
+		console.log('getUser - user:', user);
 		await cookies().then((res) => res.set('user', JSON.stringify(user)));
 		return user;
 	} catch (error) {
