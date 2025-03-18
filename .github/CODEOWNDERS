@@ -1,0 +1,8 @@
+# 백엔드 코드 소유자
+# /backend/ @backend-developer
+
+# 프론트엔드 코드 소유자
+# /frontend/ @frontend-developer
+
+# 공유 코드는 모두 검토
+# /shared/ @backend-developer @frontend-developer
